@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>MatteRörelse - Matte med kroppen!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- START SCREEN -->
+  <div id="start-screen" class="screen active">
+    <div class="start-content">
+      <h1>MatteRörelse</h1>
+      <p class="subtitle">Lös matteuppgifter med kroppen!</p>
+      <div class="start-buttons">
+        <button id="btn-camera-capture" class="btn btn-primary">
+          <span class="btn-icon">&#128247;</span>
+          Fota matteboken
+        </button>
+        <button id="btn-file-upload" class="btn btn-secondary">
+          <span class="btn-icon">&#128193;</span>
+          Välj en bild
+        </button>
+        <input type="file" id="file-input" accept="image/*" hidden>
+        <button id="btn-demo" class="btn btn-tertiary">
+          <span class="btn-icon">&#127922;</span>
+          Prova med exempeltal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHOTO SCREEN -->
+  <div id="photo-screen" class="screen">
+    <div class="photo-content">
+      <h2>Fota din mattesida</h2>
+      <div id="camera-container">
+        <video id="photo-video" autoplay playsinline></video>
+        <canvas id="photo-canvas" hidden></canvas>
+        <img id="photo-preview" hidden>
+      </div>
+      <div class="photo-buttons">
+        <button id="btn-snap" class="btn btn-primary">&#128247; Ta kort</button>
+        <button id="btn-retake" class="btn btn-secondary" hidden>&#128260; Ta om</button>
+        <button id="btn-use-photo" class="btn btn-primary" hidden>&#10004; Använd denna</button>
+        <button id="btn-back-start" class="btn btn-tertiary">&#8592; Tillbaka</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESSING SCREEN -->
+  <div id="processing-screen" class="screen">
+    <div class="processing-content">
+      <div class="spinner"></div>
+      <h2>Analyserar mattesidan...</h2>
+      <p id="processing-status">Skickar bilden till AI...</p>
+    </div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game-screen" class="screen">
+    <!-- Webcam background -->
+    <video id="game-video" autoplay playsinline></video>
+    <canvas id="game-canvas"></canvas>
+
+    <!-- UI Overlay -->
+    <div id="game-overlay">
+      <!-- Problem list sidebar -->
+      <div id="problem-sidebar"></div>
+
+      <!-- Problem counter -->
+      <div id="problem-counter">Uppgift <span id="current-problem">1</span> av <span id="total-problems">1</span></div>
+
+      <!-- Number picker row -->
+      <div id="number-picker">
+        <div class="number-zone" data-digit="0">0</div>
+        <div class="number-zone" data-digit="1">1</div>
+        <div class="number-zone" data-digit="2">2</div>
+        <div class="number-zone" data-digit="3">3</div>
+        <div class="number-zone" data-digit="4">4</div>
+        <div class="number-zone" data-digit="5">5</div>
+        <div class="number-zone" data-digit="6">6</div>
+        <div class="number-zone" data-digit="7">7</div>
+        <div class="number-zone" data-digit="8">8</div>
+        <div class="number-zone" data-digit="9">9</div>
+        <div class="number-zone borrow-zone hidden" data-digit="borrow">L&#229;na</div>
+      </div>
+
+      <!-- Arithmetic grid -->
+      <div id="arithmetic-grid"></div>
+
+      <!-- Fireworks -->
+      <canvas id="fireworks-canvas"></canvas>
+
+      <!-- Feedback overlay -->
+      <div id="feedback-overlay" class="hidden">
+        <div id="feedback-text"></div>
+      </div>
+
+      <!-- Grabbed number follows cursor -->
+      <div id="grabbed-number" class="hidden"></div>
+
+      <!-- Buttons -->
+      <button id="btn-report" class="btn-small">&#128202; Rapport</button>
+      <button id="btn-next" class="btn btn-primary hidden">Nästa uppgift &#8594;</button>
+      <button id="btn-quit" class="btn-small btn-quit-pos">&#10006; Avsluta</button>
+    </div>
+  </div>
+
+  <!-- REPORT SCREEN -->
+  <div id="report-screen" class="screen">
+    <div class="report-content">
+      <h2>&#128202; Rapport</h2>
+      <div id="report-summary"></div>
+      <div id="report-list"></div>
+      <div class="report-buttons">
+        <button id="btn-print" class="btn btn-secondary">&#128424; Skriv ut</button>
+        <button id="btn-back-game" class="btn btn-primary">&#8592; Tillbaka till spelet</button>
+        <button id="btn-back-start-report" class="btn btn-tertiary">&#127968; Startsidan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="site-footer">CC-BY Anders Bjarby 2026. <a href="https://anders.bjarby.com" target="_blank">anders.bjarby.com</a></div>
+
+  <!-- MediaPipe -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.min.js"></script>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --input-type=module -e \"\nimport { ProblemManager } from './js/problems.js';\nconst pm = new ProblemManager\\(\\);\npm.loadDemo\\(\\);\nconst p = pm.getCurrent\\(\\);\nconsole.log\\('Problem:', p\\);\nconsole.log\\('Cols:', pm.getColumnCount\\(p\\)\\);\nconsole.log\\('Answer:', pm.calculateAnswer\\(p\\)\\);\nconsole.log\\('Digits:', pm.getDigits\\(p.numbers[0], pm.getColumnCount\\(p\\)\\)\\);\nconsole.log\\('Carries:', pm.getCarries\\(p\\)\\);\n\n// Test validation\nconst correctAnswer = pm.calculateAnswer\\(p\\);\nconst cols = pm.getColumnCount\\(p\\);\nconst correctDigits = pm.getDigits\\(correctAnswer, cols\\);\nconsole.log\\('Correct digits:', correctDigits\\);\nconsole.log\\('Validate correct:', pm.validateAnswer\\(p, correctDigits\\)\\);\nconsole.log\\('Validate wrong:', pm.validateAnswer\\(p, [9,9,9,9]\\)\\);\n\" 2>&1)",
+      "Bash(sleep 1 && curl -s http://localhost:8765/ | head -5)",
+      "Bash(git init:*)"
+    ]
+  }
+}
