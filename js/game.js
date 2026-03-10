@@ -70,8 +70,9 @@ class Fireworks {
       this.ctx.fillStyle = p.color;
       this.ctx.shadowColor = p.color;
       this.ctx.shadowBlur = 8;
+      const r = Math.max(0.1, p.size * p.life);
       this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+      this.ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
       this.ctx.fill();
     }
 
